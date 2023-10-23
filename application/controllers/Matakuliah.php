@@ -1,32 +1,31 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
-class Matakuliah extends CI_Controller {
-
-    public function __construct() {
-        parent::__construct();
-        // Load any models or libraries you might need
-    }
-
-    public function index() {
-        // This method could be used to show a default view or redirect somewhere
-        // For example, you might want to show a list of matakuliah
-        $this->load->view('view-matakuliah-list');
-    }
-
-    public function tambah() {
-        // This method is used to handle the form submission
-        // Process the form data submitted from view-form-matakuliah.php
-        $kode = $this->input->post('kode');
-        $nama = $this->input->post('nama');
-        $sks = $this->input->post('sks');
-
-        // Perform necessary validation and database operations
-        // For example, you might want to save the data to a database
-
-        // After processing, you might want to redirect to another page
-        redirect('matakuliah/index');
-    }
-
+class Matakuliah extends CI_Controller
+{
+ public function index()
+ {
+ $this->load->view('view-form-matakuliah');
+ }
+ public function cetak()
+ {
+    $this->form_validation->set_rules('kode', 'Kode Matakuliah',
+'required|min_length[3]', [
+ 'required' => 'Kode Matakuliah Harus diisi',
+ 'min_lenght' => 'Kode terlalu pendek'
+ ]);
+ $this->form_validation->set_rules('nama', 'Nama Matakuliah',
+'required|min_length[3]', [
+ 'required' => 'Nama Matakuliah Harus diisi',
+ 'min_lenght' => 'Nama terlalu pendek'
+ ]);
+ if ($this->form_validation->run() != true) {
+ $this->load->view('view-form-matakuliah');
+ } else {
+ $data = [
+ 'kode' => $this->input->post('kode'),
+ 'nama' => $this->input->post('nama'),
+ 'sks' => $this->input->post('sks'),
+ ];
+ $this->load->view('view-data-matakuliah', $data);
+ }
+ }
 }
-?>

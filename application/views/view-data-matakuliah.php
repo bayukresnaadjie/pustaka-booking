@@ -1,26 +1,50 @@
-<!-- File: Application/views/view-data-matakuliah.php -->
-
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Matakuliah</title>
+    <title>Tampil Data Matakuliah</title>
 </head>
 
 <body>
-
-    <h2>Data Matakuliah</h2>
-
-    <?php if (!empty($kode) && !empty($nama) && !empty($sks)): ?>
-    <p>Kode Matakuliah: <?php echo $kode; ?></p>
-    <p>Nama Matakuliah: <?php echo $nama; ?></p>
-    <p>SKS: <?php echo $sks; ?></p>
-    <?php else: ?>
-    <p>Data matakuliah tidak tersedia.</p>
-    <?php endif; ?>
-
+    <center>
+        <table>
+            <tr>
+                <th colspan="3">
+                    Tampil Data Mata Kuliah
+                </th>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <th>Kode MTK</th>
+                <th>:</th>
+                <td>
+                    <?= $kode; ?>
+                </td>
+            </tr>
+            <tr>
+                <td>Nama MTK</td>
+                <td>:</td>
+                <td>
+                    <?= $nama; ?>
+                </td>
+            </tr>
+            <tr>
+                <td>SKS</td>
+                <td>:</td>
+                <td>
+                    <?= $sks;?>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" align="center">
+                    <a href="<?= base_url('matakuliah'); ?>">Kembali</a>
+                </td>
+            </tr>
+        </table>
+    </center>
 </body>
 
 </html>
